@@ -28,4 +28,12 @@ describe('should render an input component', () => {
     userEvent.type(inputText, '50');
     expect(inputText).toHaveValue(50);
   });
+
+  it('deve chamar um evento de onSubmit ao clicar em realizar transacao', () => {
+    const realizarTransacao = jest.fn();
+    render(<Formulario realizarTransacao={realizarTransacao} />);
+    const btn = screen.getByRole('button');
+    userEvent.click(btn);
+    expect(realizarTransacao).toHaveBeenCalledTimes(1);
+  });
 });
